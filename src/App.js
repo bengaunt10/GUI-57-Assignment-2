@@ -71,7 +71,7 @@ function App() {
         <input type='text' className='search-bar' placeholder="Search..."
         onChange={(e) => setSearch(e.target.value)}/>
 
-        <button className='search-icon' onClick={searchPressed}><img src={search_logo}/></button>
+        <button className='search-icon' onClick={searchPressed}><img src={search_logo} alt="search"/></button>
       </div>
 
       {typeof weather.main != "undefined" ? (
