@@ -109,7 +109,7 @@ h1{
 }
 
 body {
-  background-color: gray;
+  background-color: rgba(0, 0, 255, 0.7);
 }
 
 .date {
