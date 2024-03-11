@@ -53,13 +53,16 @@ h1{
 }
 
 .weatherInfo {
+  display: grid;
+  grid-template-areas: "city city"
+                       "weather-icon description"
+                       "temp description";
   color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
   font-size: 36px;
   font-weight: bold;
   text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
-  width: 80%;
   margin: 15px auto;
   border-radius: 15px;
   padding: 5px;
@@ -67,13 +70,11 @@ h1{
   background-color: rgba(17, 85, 110, 0.2);
 }
 
-.weatherInfo p{
-  margin: 15px 0px;
-}
-
 .weather-icon{
-  height: 200px;
-  width: 200px;
+  grid-area: weather-icon;
+  height: 150px;
+  width: 150px;
+  margin:auto auto;
 }
 
 .search-icon {
@@ -87,6 +88,7 @@ h1{
   width: 40px;
   padding: 5px;
   border-radius: 10px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
 
 .search-icon img:hover{
@@ -94,22 +96,36 @@ h1{
 }
 
 .description {
+  grid-area: description;
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
-  padding-inline: 10px;
+  margin: auto;
+
 }
 
 .temp{
-  font-size: 96px;
+  grid-area: temp;
+  font-size: 72px;
+  margin: auto auto;
 }
 
 .city {
+  grid-area: city;
   font-size: 52px;
-  max-width: 100%;
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+}
+
+.city img{
+  height: 70px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+
 }
 
 body {
-  background-color: rgba(0, 0, 255, 0.7);
+  background-color: gray;
 }
 
 .date {
@@ -119,3 +135,4 @@ body {
   margin-top: 10px;
   margin-bottom: 0px;
 }
+

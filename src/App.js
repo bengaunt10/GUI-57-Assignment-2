@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import search_logo from './search-icon.png';
+import location_icon from './location_icon.png';
 
 const api = {
   key: "7250c8ef1898de70cf64aeea44e33014",
@@ -71,18 +72,18 @@ function App() {
         <input type='text' className='search-bar' placeholder="Search..."
         onChange={(e) => setSearch(e.target.value)}/>
 
-        <button className='search-icon' onClick={searchPressed}><img src={search_logo} alt="search"/></button>
+        <button className='search-icon' onClick={searchPressed}><img src={search_logo}/></button>
       </div>
 
       {typeof weather.main != "undefined" ? (
          <div className='weatherInfo'>
+          <p className='city'><img src={location_icon}/>{weather.name}</p>
           {renderWeatherImage()}
-          <p className='temp'>{Math.round(weather.main.temp)}°C</p>
-          <p className='city'>{weather.name}</p>
           <div className='description'>
             <p>{weather.weather[0].main}</p>
             <p>{weather.wind.speed} m/s</p>
           </div>
+          <p className='temp'>{Math.round(weather.main.temp)}°C</p>
         </div>   
       ) : (
         ""
