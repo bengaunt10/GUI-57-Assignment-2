@@ -75,7 +75,9 @@ h1{
   height: 150px;
   width: 150px;
   margin:auto auto;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
+
 
 .search-icon {
   background-color: rgba(0, 0, 0, 0);
@@ -101,13 +103,21 @@ h1{
   flex-flow: column;
   justify-content: space-between;
   margin: auto;
+  width: 100%;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:200;
+}
 
+.description p{
+  margin: 5%;
 }
 
 .temp{
   grid-area: temp;
   font-size: 72px;
   margin: auto auto;
+  padding: 10px;
 }
 
 .city {
@@ -129,10 +139,8 @@ body {
 }
 
 .date {
-  text-align: center;
-  color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  color: white;
+  margin: 10px 0px 0px 10px;
 }
 

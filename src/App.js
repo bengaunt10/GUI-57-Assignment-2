@@ -82,6 +82,7 @@ function App() {
           <div className='description'>
             <p>{weather.weather[0].main}</p>
             <p>{weather.wind.speed} m/s</p>
+            <p>{Math.round(weather.main.pressure)} hPa</p>
           </div>
           <p className='temp'>{Math.round(weather.main.temp)}°C</p>
         </div>   
