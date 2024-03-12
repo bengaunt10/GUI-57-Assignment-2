@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import search_logo from './search-icon.png';
 import location_icon from './location_icon.png';
-import { formToJSON } from 'axios';
 
 const weather_api = {
   key: "7250c8ef1898de70cf64aeea44e33014",
@@ -21,6 +20,8 @@ function App() {
   const [forecast, setForecast] = useState({});
 
   const current = new Date();
+  const dayNum = current.getDay();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
   const searchPressed = () => {
@@ -30,7 +31,7 @@ function App() {
         setWeather(result1);
         console.log(result1)
     });
-    fetch(`${forecast_api.base}forecast?q=${search}&cnt=${7}&appid=${forecast_api.key}`)
+    fetch(`${forecast_api.base}forecast?q=${search}&units=metric&cnt=${7}&appid=${forecast_api.key}`)
       .then((res) => res.json())
       .then((result2) => {
         setForecast(result2);
@@ -76,6 +77,22 @@ function App() {
     return  <img src={imageURL} alt='weather' className='weather-icon'/>;
   }
 
+  const renderForecastImage = (forecastCode) => {
+    if (!forecast || !forecast.list || forecast.list.length === 0) {
+      return null
+    }
+
+    const dayForecastCode = forecastCode.replace('n', 'd');
+    const imageURL1 = weatherImages[dayForecastCode];
+      
+    if (!imageURL1) {
+      console.warn('No image found for weather code: ', dayForecastCode);
+      return null;
+    }
+  
+    return <img src={imageURL1} alt='forecast' className='forecast-icon' />;
+  };
+
   return (
     <div className='screen'>
       <div className='notch'></div>
@@ -103,16 +120,47 @@ function App() {
         ""
       )}
       
-      <div className='forecast'>
-        <div className='day'><p>23°C</p></div>
-        <div className='day'><p>21°C</p></div>
-        <div className='day'><p>23°C</p></div>
-        <div className='day'><p>24°C</p></div>
-        <div className='day'><p>21°C</p></div>
-        <div className='day'><p>23°C</p></div>
-        <div className='day'><p>22°C</p></div>
-      </div>
-
+      {typeof forecast.list != "undefined" ? (
+          <div className='forecast'>
+            <div className='day'>
+              <p>{days[dayNum]}</p>
+              {renderForecastImage(forecast.list[0].weather[0].icon)}
+              <p>{Math.round(forecast.list[0].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+            <p>{days[dayNum + 1]}</p>
+              {renderForecastImage(forecast.list[1].weather[0].icon)}
+              <p>{Math.round(forecast.list[1].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+            <p>{days[dayNum + 2]}</p>
+              {renderForecastImage(forecast.list[2].weather[0].icon)}
+              <p>{Math.round(forecast.list[2].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+            <p>{days[dayNum + 3]}</p>
+              {renderForecastImage(forecast.list[3].weather[0].icon)}
+              <p>{Math.round(forecast.list[3].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+              <p>{days[dayNum + 4]}</p>
+              {renderForecastImage(forecast.list[4].weather[0].icon)}
+              <p>{Math.round(forecast.list[4].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+              <p>{days[dayNum - 2]}</p>
+              {renderForecastImage(forecast.list[5].weather[0].icon)}
+              <p>{Math.round(forecast.list[5].main.temp)}°C</p>
+            </div>
+            <div className='day'>
+              <p>{days[dayNum - 1]}</p>
+              {renderForecastImage(forecast.list[6].weather[0].icon)}
+              <p>{Math.round(forecast.list[6].main.temp)}°C</p>
+            </div>
+          </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 } 
