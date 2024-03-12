@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 import search_logo from './search-icon.png';
 import location_icon from './location_icon.png';
+import { formToJSON } from 'axios';
 
-const api = {
+const weather_api = {
   key: "7250c8ef1898de70cf64aeea44e33014",
+  base: "https://api.openweathermap.org/data/2.5/",
+};
+
+const forecast_api ={
+  key: "9154491dfd88e6139f12c67eb9208e10",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
@@ -12,17 +18,24 @@ function App() {
 
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
+  const [forecast, setForecast] = useState({});
 
   const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
   const searchPressed = () => {
-    fetch(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
+    fetch(`${weather_api.base}weather?q=${search}&units=metric&APPID=${weather_api.key}`)
       .then((res) => res.json())
-      .then((result) => {
-        setWeather(result);
-        console.log(result)
+      .then((result1) => {
+        setWeather(result1);
+        console.log(result1)
     });
+    fetch(`${forecast_api.base}forecast?q=${search}&cnt=${7}&appid=${forecast_api.key}`)
+      .then((res) => res.json())
+      .then((result2) => {
+        setForecast(result2);
+        console.log(result2)
+      });
   };
 
   const weatherImages = {
@@ -89,6 +102,16 @@ function App() {
       ) : (
         ""
       )}
+      
+      <div className='forecast'>
+        <div className='day'><p>23°C</p></div>
+        <div className='day'><p>21°C</p></div>
+        <div className='day'><p>23°C</p></div>
+        <div className='day'><p>24°C</p></div>
+        <div className='day'><p>21°C</p></div>
+        <div className='day'><p>23°C</p></div>
+        <div className='day'><p>22°C</p></div>
+      </div>
 
     </div>
   );
