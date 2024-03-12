@@ -5,10 +5,34 @@
   border: 10px solid black;
   border-radius: 30px 30px 30px 30px;
   margin: auto;
-  background-image:url('beach.webp');
-  background-position: center;
+  background-color: rgba(133, 251, 255, 0.5);
   background-size: cover;
+  background-position: center;
 
+}
+
+.screen.clear-background {
+  background-image: url('beach.webp');
+}
+
+.screen.cloudy-background {
+  background-image: url('cloudy_beach.jpg');
+}
+
+.screen.rainy-background {
+  background-image: url('rainy_beach.jpg');
+}
+
+.screen.thunderstorm-background {
+  background-image: url('thunderstorm_beach.jpg');
+}
+
+.screen.snowy-background {
+  background-image: url('snowy_beach.jpg');
+}
+
+.screen.misty-background {
+  background-image: url('misty_beach.jpeg');
 }
 
 .notch {
@@ -142,12 +166,16 @@ body {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: white;
   margin: 10px 0px 0px 10px;
+  width: max-content;
+  background-color: rgba(3, 12, 15, 0.2);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 18px;
 }
 
 .forecast{
   display: flex;
   overflow: auto;
-
 }
 
 .day{
