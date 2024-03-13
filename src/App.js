@@ -101,21 +101,35 @@ function App() {
   const renderBackgroundImage = () => {
 
     const description = weather.weather[0].main;
+    const image = weather.weather[0].icon;
     
-    if (description === "Clouds"){
-      return "screen cloudy-background";
+    if (description === "Clear"){
+      if (image.slice(-1) === 'd'){
+        return "screen clear-background";
+      }
+      return "screen clear-background-n";
     }
     else if (description === "Rain"){
-      return "screen rainy-background";
+      if (image.slice(-1) === 'd'){
+        return "screen rainy-background";
+      }
+      return "screen rainy-background-n";
     }
-    else if (description === "Clear"){
-      return "screen clear-background";
+    else if (description === "Clouds"){
+      if (image.slice(-1) === 'd'){
+        return "screen cloudy-background";
+      }
+      return "screen cloudy-background-n";
     }
+
     else if (description === "Thunderstorm"){
       return "screen thunderstorm-background";
     }
     else if (description === "Snow"){
-      return "screen snowy-background";
+      if (image.slice(-1) === 'd'){
+        return "screen snowy-background";
+      }
+      return "screen snowy-background-n";
     }
     else if (description === "Mist"){
       return "screen misty-background";
@@ -176,7 +190,7 @@ function App() {
               <p>{Math.round(forecast.list[3].main.temp)}°C</p>
             </div>
             <div className='day'>
-              <p>{days[dayNum + 4]}</p>
+              <p>{days[dayNum - 3]}</p>
               {renderForecastImage(forecast.list[4].weather[0].icon, forecast.list[4].dt)}
               <p>{Math.round(forecast.list[4].main.temp)}°C</p>
             </div>
