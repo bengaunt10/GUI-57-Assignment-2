@@ -77,12 +77,17 @@ function App() {
     return  <img src={imageURL} alt='weather' className='weather-icon'/>;
   }
 
-  const renderForecastImage = (forecastCode) => {
+  const renderForecastImage = (forecastCode, forecastdt) => {
     if (!forecast || !forecast.list || forecast.list.length === 0) {
       return null
     }
 
-    const dayForecastCode = forecastCode.replace('n', 'd');
+    var dayForecastCode = forecast.list[0].weather[0].icon;
+
+    if (forecastdt !== forecast.list[0].dt) {
+      dayForecastCode = forecastCode.replace('n', 'd');
+    }
+
     const imageURL1 = weatherImages[dayForecastCode];
       
     if (!imageURL1) {
@@ -93,8 +98,36 @@ function App() {
     return <img src={imageURL1} alt='forecast' className='forecast-icon' />;
   };
 
+  const renderBackgroundImage = () => {
+
+    const description = weather.weather[0].main;
+    
+    if (description === "Clouds"){
+      return "screen cloudy-background";
+    }
+    else if (description === "Rain"){
+      return "screen rainy-background";
+    }
+    else if (description === "Clear"){
+      return "screen clear-background";
+    }
+    else if (description === "Thunderstorm"){
+      return "screen thunderstorm-background";
+    }
+    else if (description === "Snow"){
+      return "screen snowy-background";
+    }
+    else if (description === "Mist"){
+      return "screen misty-background";
+    }
+    else{
+      return "screen";
+    }
+ 
+  };
+
   return (
-    <div className='screen'>
+    <div className={(typeof weather.main != "undefined") ? renderBackgroundImage(): 'screen'}>
       <div className='notch'></div>
       <p className='date'>{date}</p>
       <h1>SurfX</h1>
@@ -107,7 +140,7 @@ function App() {
 
       {typeof weather.main != "undefined" ? (
          <div className='weatherInfo'>
-          <p className='city'><img src={location_icon}/>{weather.name}</p>
+          <p className='city'><img src={location_icon}/>{weather.name}, {weather.sys.country}</p>
           {renderWeatherImage()}
           <div className='description'>
             <p>{weather.weather[0].main}</p>
@@ -124,37 +157,37 @@ function App() {
           <div className='forecast'>
             <div className='day'>
               <p>{days[dayNum]}</p>
-              {renderForecastImage(forecast.list[0].weather[0].icon)}
+              {renderForecastImage(forecast.list[0].weather[0].icon, forecast.list[0].dt)}
               <p>{Math.round(forecast.list[0].main.temp)}°C</p>
             </div>
             <div className='day'>
             <p>{days[dayNum + 1]}</p>
-              {renderForecastImage(forecast.list[1].weather[0].icon)}
+              {renderForecastImage(forecast.list[1].weather[0].icon, forecast.list[1].dt)}
               <p>{Math.round(forecast.list[1].main.temp)}°C</p>
             </div>
             <div className='day'>
             <p>{days[dayNum + 2]}</p>
-              {renderForecastImage(forecast.list[2].weather[0].icon)}
+              {renderForecastImage(forecast.list[2].weather[0].icon, forecast.list[2].dt)}
               <p>{Math.round(forecast.list[2].main.temp)}°C</p>
             </div>
             <div className='day'>
             <p>{days[dayNum + 3]}</p>
-              {renderForecastImage(forecast.list[3].weather[0].icon)}
+              {renderForecastImage(forecast.list[3].weather[0].icon, forecast.list[3].dt)}
               <p>{Math.round(forecast.list[3].main.temp)}°C</p>
             </div>
             <div className='day'>
               <p>{days[dayNum + 4]}</p>
-              {renderForecastImage(forecast.list[4].weather[0].icon)}
+              {renderForecastImage(forecast.list[4].weather[0].icon, forecast.list[4].dt)}
               <p>{Math.round(forecast.list[4].main.temp)}°C</p>
             </div>
             <div className='day'>
               <p>{days[dayNum - 2]}</p>
-              {renderForecastImage(forecast.list[5].weather[0].icon)}
+              {renderForecastImage(forecast.list[5].weather[0].icon, forecast.list[5].dt)}
               <p>{Math.round(forecast.list[5].main.temp)}°C</p>
             </div>
             <div className='day'>
               <p>{days[dayNum - 1]}</p>
-              {renderForecastImage(forecast.list[6].weather[0].icon)}
+              {renderForecastImage(forecast.list[6].weather[0].icon, forecast.list[6].dt)}
               <p>{Math.round(forecast.list[6].main.temp)}°C</p>
             </div>
           </div>
