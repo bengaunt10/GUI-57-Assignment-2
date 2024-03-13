@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import search_logo from './search-icon.png';
 import location_icon from './location_icon.png';
+import three_bars_icon from './three-bars-icon.jpg';
 
 const weather_api = {
   key: "7250c8ef1898de70cf64aeea44e33014",
@@ -18,11 +19,30 @@ function App() {
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
   const [forecast, setForecast] = useState({});
+  const [navOpen,  setnavOpen] = useState(false);
 
   const current = new Date();
   const dayNum = current.getDay();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+  const loopDays = (dayNum, addDays) => {
+    if(dayNum + addDays >= 7){
+      return ((dayNum + addDays) - days.length);
+    }
+
+    return dayNum + addDays
+  }
+
+
+  const openNav = () => {
+    setnavOpen(true);
+
+  }
+
+  const closeNav = () => {
+    setnavOpen(false);
+  }
 
   const searchPressed = () => {
     fetch(`${weather_api.base}weather?q=${search}&units=metric&APPID=${weather_api.key}`)
@@ -134,6 +154,9 @@ function App() {
     else if (description === "Mist"){
       return "screen misty-background";
     }
+    else if (description === "Haze"){
+      return "screen hazy-background";
+    }
     else{
       return "screen";
     }
@@ -142,72 +165,87 @@ function App() {
 
   return (
     <div className={(typeof weather.main != "undefined") ? renderBackgroundImage(): 'screen'}>
-      <div className='notch'></div>
-      <p className='date'>{date}</p>
-      <h1>SurfX</h1>
-      <div className='search-box'>
-        <input type='text' className='search-bar' placeholder="Search..."
-        onChange={(e) => setSearch(e.target.value)}/>
+      <div className={navOpen ? "sidebar open": "sidebar"}>
+        <ul>
+          <a href="#" className='close_button' onClick={closeNav}>X</a>
+          <li><a href='#'>Home</a></li>
+          <li><a href='#'>Weather Information</a></li>
+          <li><a href='#'>Map</a></li>
+        </ul>
 
-        <button className='search-icon' onClick={searchPressed}><img src={search_logo}/></button>
+      </div>
+      <div className='main'>
+        <div className='notch'></div>
+        <p className='date'>{date}</p>
+        <header>
+          <button className="open_button" onClick={openNav}><img src={three_bars_icon}/></button>
+          <h1>SurfX</h1>
+        </header>
+        <div className='search-box'>
+          <input type='text' className='search-bar' placeholder="Search..."
+          onChange={(e) => setSearch(e.target.value)}/>
+
+          <button className='search-icon' onClick={searchPressed}><img src={search_logo}/></button>
+        </div>
+
+        {typeof weather.main != "undefined" ? (
+          <div className='weatherInfo'>
+            <p className='city'><img src={location_icon}/>{weather.name}, {weather.sys.country}</p>
+            {renderWeatherImage()}
+            <div className='description'>
+              <p>{weather.weather[0].main}</p>
+              <p>{weather.wind.speed} m/s</p>
+              <p>{Math.round(weather.main.pressure)} hPa</p>
+            </div>
+            <p className='temp'>{Math.round(weather.main.temp)}°C</p>
+          </div>   
+        ) : (
+          ""
+        )}
+        
+        {typeof forecast.list != "undefined" ? (
+            <div className='forecast'>
+              <div className='day'>
+                <p>{days[loopDays(dayNum, 0)]}</p>
+                {renderForecastImage(forecast.list[0].weather[0].icon, forecast.list[0].dt)}
+                <p>{Math.round(forecast.list[0].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+              <p>{days[loopDays(dayNum, 1)]}</p>
+                {renderForecastImage(forecast.list[1].weather[0].icon, forecast.list[1].dt)}
+                <p>{Math.round(forecast.list[1].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+              <p>{days[loopDays(dayNum, 2)]}</p>
+                {renderForecastImage(forecast.list[2].weather[0].icon, forecast.list[2].dt)}
+                <p>{Math.round(forecast.list[2].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+              <p>{days[loopDays(dayNum, 3)]}</p>
+                {renderForecastImage(forecast.list[3].weather[0].icon, forecast.list[3].dt)}
+                <p>{Math.round(forecast.list[3].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+                <p>{days[loopDays(dayNum, 4)]}</p>
+                {renderForecastImage(forecast.list[4].weather[0].icon, forecast.list[4].dt)}
+                <p>{Math.round(forecast.list[4].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+                <p>{days[loopDays(dayNum, 5)]}</p>
+                {renderForecastImage(forecast.list[5].weather[0].icon, forecast.list[5].dt)}
+                <p>{Math.round(forecast.list[5].main.temp)}°C</p>
+              </div>
+              <div className='day'>
+                <p>{days[loopDays(dayNum, 6)]}</p>
+                {renderForecastImage(forecast.list[6].weather[0].icon, forecast.list[6].dt)}
+                <p>{Math.round(forecast.list[6].main.temp)}°C</p>
+              </div>
+            </div>
+        ) : (
+          ""
+        )}
       </div>
 
-      {typeof weather.main != "undefined" ? (
-         <div className='weatherInfo'>
-          <p className='city'><img src={location_icon}/>{weather.name}, {weather.sys.country}</p>
-          {renderWeatherImage()}
-          <div className='description'>
-            <p>{weather.weather[0].main}</p>
-            <p>{weather.wind.speed} m/s</p>
-            <p>{Math.round(weather.main.pressure)} hPa</p>
-          </div>
-          <p className='temp'>{Math.round(weather.main.temp)}°C</p>
-        </div>   
-      ) : (
-        ""
-      )}
-      
-      {typeof forecast.list != "undefined" ? (
-          <div className='forecast'>
-            <div className='day'>
-              <p>{days[dayNum]}</p>
-              {renderForecastImage(forecast.list[0].weather[0].icon, forecast.list[0].dt)}
-              <p>{Math.round(forecast.list[0].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-            <p>{days[dayNum + 1]}</p>
-              {renderForecastImage(forecast.list[1].weather[0].icon, forecast.list[1].dt)}
-              <p>{Math.round(forecast.list[1].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-            <p>{days[dayNum + 2]}</p>
-              {renderForecastImage(forecast.list[2].weather[0].icon, forecast.list[2].dt)}
-              <p>{Math.round(forecast.list[2].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-            <p>{days[dayNum + 3]}</p>
-              {renderForecastImage(forecast.list[3].weather[0].icon, forecast.list[3].dt)}
-              <p>{Math.round(forecast.list[3].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-              <p>{days[dayNum - 3]}</p>
-              {renderForecastImage(forecast.list[4].weather[0].icon, forecast.list[4].dt)}
-              <p>{Math.round(forecast.list[4].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-              <p>{days[dayNum - 2]}</p>
-              {renderForecastImage(forecast.list[5].weather[0].icon, forecast.list[5].dt)}
-              <p>{Math.round(forecast.list[5].main.temp)}°C</p>
-            </div>
-            <div className='day'>
-              <p>{days[dayNum - 1]}</p>
-              {renderForecastImage(forecast.list[6].weather[0].icon, forecast.list[6].dt)}
-              <p>{Math.round(forecast.list[6].main.temp)}°C</p>
-            </div>
-          </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 } 
