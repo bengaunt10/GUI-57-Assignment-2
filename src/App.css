@@ -12,15 +12,27 @@
 }
 
 .screen.clear-background {
-  background-image: url('beach.webp');
+  background-image: url('clear_beach.webp');
+}
+
+.screen.clear-background-n {
+  background-image: url('clear_beach_night.jpg');
 }
 
 .screen.cloudy-background {
   background-image: url('cloudy_beach.jpg');
 }
 
+.screen.cloudy-background-n {
+  background-image: url('cloudy_beach_night.jpg');
+}
+
 .screen.rainy-background {
   background-image: url('rainy_beach.jpg');
+}
+
+.screen.rainy-background-n {
+  background-image: url('rainy_beach_night.jpg');
 }
 
 .screen.thunderstorm-background {
@@ -29,6 +41,10 @@
 
 .screen.snowy-background {
   background-image: url('snowy_beach.jpg');
+}
+
+.screen.snowy-background-n {
+  background-image: url('snow_beach_night.jpg');
 }
 
 .screen.misty-background {
@@ -88,10 +104,9 @@ h1{
   font-weight: bold;
   text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
   margin: 15px auto;
-  border-radius: 15px;
   padding: 5px;
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-  background-color: rgba(17, 85, 110, 0.2);
+  background-color: rgba(13, 45, 56, 0.5);
 }
 
 .weather-icon{
@@ -146,7 +161,7 @@ h1{
 
 .city {
   grid-area: city;
-  font-size: 52px;
+  font-size: 44px;
   margin: auto auto;
   display: flex;
   align-items: center;
