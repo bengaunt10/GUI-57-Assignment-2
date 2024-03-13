@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 function BeachMap(searchTerm) {
 
@@ -7,8 +7,7 @@ function BeachMap(searchTerm) {
 
   return (
     <div>
-      <input type="text" value={searchTerm} placeholder="Search for beaches" />
-      <iframe title="map" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src={mapUrl}/>
+      <iframe title="map" width="600" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src={mapUrl}/>
     </div>
     
    
