@@ -17,8 +17,8 @@ function App() { //every appplication runs directly from app function
 
         <Routes>
           <Route exact path='/' element={<Homepage />} />
-          <Route exact path='/Info' element={<Info />} />
-          <Route exact path='/Map' element={<Map />} />
+          <Route exact path='Info' element={<Info />} />
+          <Route exact path='Map' element={<Map />} />
         </Routes>
     </Router>
     </div>
