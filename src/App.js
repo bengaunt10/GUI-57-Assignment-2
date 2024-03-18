@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import search_logo from './search-icon.png';
+
+import BeachMap from './map'
+const api = {
+=======
 import location_icon from './location_icon.png';
 import three_bars_icon from './three-bars-icon.jpg';
 
 const weather_api = {
+
   key: "7250c8ef1898de70cf64aeea44e33014",
   base: "https://api.openweathermap.org/data/2.5/",
 };
@@ -173,6 +178,22 @@ function App() {
           <li><a href='#'>Map</a></li>
         </ul>
 
+
+      {typeof weather.main != "undefined" ? (
+         <div className='weatherInfo'>
+          {renderWeatherImage()}
+          <p className='temp'>{Math.round(weather.main.temp)}°C</p>
+          <p className='city'>{weather.name}</p>
+          <div className='description'>
+            <p>{weather.weather[0].main}</p>
+            <p>{weather.wind.speed} m/s</p>
+            <div>{BeachMap(search)}</div>
+          </div>
+        </div>   
+      ) : (
+        ""
+      )}
+
       </div>
       <div className='main'>
         <div className='notch'></div>
@@ -245,6 +266,7 @@ function App() {
           ""
         )}
       </div>
+
 
     </div>
   );
