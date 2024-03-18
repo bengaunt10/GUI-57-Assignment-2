@@ -5,10 +5,134 @@
   border: 10px solid black;
   border-radius: 30px 30px 30px 30px;
   margin: auto;
-  background-image:url('beach.webp');
-  background-position: center;
+  background-color: rgba(133, 251, 255, 0.5);
   background-size: cover;
+  background-position: center;
+  display: flex;
+  transition: background-image 0.5s ease; 
+}
 
+.sidebar{
+  overflow-x: hidden;
+  position: absolute;
+  width: 0;
+  height: 896px;
+  z-index: 1;
+  transition: ease-out 0.5s;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.sidebar.open {
+  background-color: #2F4050;
+  width: 200px;
+  transition: width 0.5s;
+  
+}
+
+
+.open_button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.open_button img {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  border: none;
+}
+
+.open_button img:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close_button{
+  font-size: 36px;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: end;
+  margin-right: 10px;
+}
+
+.sidebar ul{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+
+.sidebar ul li{
+  text-decoration: none;
+  list-style: none;
+  color: white;
+  padding: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.sidebar ul li:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul li a:visited{
+  color: white;
+}
+
+.sidebar ul a{
+  text-decoration: none;
+}
+
+.sidebar ul a:visited{
+  text-decoration: none;
+  color: white;
+}
+
+.main{
+  position: relative;
+  width: 100%;
+}
+
+.screen.clear-background {
+  background-image: url('clear_beach.webp');
+}
+
+.screen.clear-background-n {
+  background-image: url('clear_beach_night.jpg');
+}
+
+.screen.cloudy-background {
+  background-image: url('cloudy_beach.jpg');
+}
+
+.screen.cloudy-background-n {
+  background-image: url('cloudy_beach_night.jpg');
+}
+
+.screen.rainy-background {
+  background-image: url('rainy_beach.jpg');
+}
+
+.screen.rainy-background-n {
+  background-image: url('rainy_beach_night.jpg');
+}
+
+.screen.thunderstorm-background {
+  background-image: url('thunderstorm_beach.jpg');
+}
+
+.screen.snowy-background {
+  background-image: url('snowy_beach.jpg');
+}
+
+.screen.snowy-background-n {
+  background-image: url('snow_beach_night.jpg');
+}
+
+.screen.misty-background {
+  background-image: url('misty_beach.jpeg');
+}
+
+.screen.hazy-background {
+  background-image: url('hazy_beach.jpeg');
 }
 
 .notch {
@@ -19,13 +143,18 @@
   background-color: black;
 }
 
+header{
+  display: flex;
+  align-items: center;
+}
+
 h1{
   color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
   text-align: center;
   font-size: 42px;
-  margin-top: 10px;
+  margin: auto 23%;
 }
 
 
@@ -53,28 +182,30 @@ h1{
 }
 
 .weatherInfo {
+  display: grid;
+  grid-template-areas: "city city"
+                       "weather-icon description"
+                       "temp description";
   color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
   font-size: 36px;
   font-weight: bold;
   text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
-  width: 80%;
   margin: 15px auto;
-  border-radius: 15px;
   padding: 5px;
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-  background-color: rgba(17, 85, 110, 0.2);
-}
-
-.weatherInfo p{
-  margin: 15px 0px;
+  background-color: rgba(13, 45, 56, 0.5);
 }
 
 .weather-icon{
-  height: 200px;
-  width: 200px;
+  grid-area: weather-icon;
+  height: 150px;
+  width: 150px;
+  margin:auto auto;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
+
 
 .search-icon {
   background-color: rgba(0, 0, 0, 0);
@@ -87,6 +218,7 @@ h1{
   width: 40px;
   padding: 5px;
   border-radius: 10px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
 
 .search-icon img:hover{
@@ -94,18 +226,40 @@ h1{
 }
 
 .description {
+  grid-area: description;
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
-  padding-inline: 10px;
+  margin: auto;
+  width: 100%;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:200;
+}
+
+.description p{
+  margin: 5%;
 }
 
 .temp{
-  font-size: 96px;
+  grid-area: temp;
+  font-size: 72px;
+  margin: auto auto;
+  padding: 10px;
 }
 
 .city {
-  font-size: 52px;
-  max-width: 100%;
+  grid-area: city;
+  font-size: 44px;
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+}
+
+.city img{
+  height: 70px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+
 }
 
 body {
@@ -113,9 +267,38 @@ body {
 }
 
 .date {
-  text-align: center;
-  color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  color: white;
+  margin: 0px 0px 0px 310px;
+  width: max-content;
+  background-color: rgba(3, 12, 15, 0.2);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 18px;
 }
+
+.forecast{
+  display: flex;
+  overflow: auto;
+}
+
+.day{
+  padding: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin: 5px;
+}
+
+.day:hover{
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.forecast-icon{
+  width: 75px;
+  height: 75px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
