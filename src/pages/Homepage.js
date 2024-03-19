@@ -17,11 +17,15 @@ const forecast_api ={
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
+
+
 function Homepage() {
 
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
   const [forecast, setForecast] = useState({});
+
+
 
   const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
@@ -178,4 +182,6 @@ function Homepage() {
   );
 } 
 
+
 export default Homepage;
+

@@ -79,6 +79,28 @@
     display: flex;
     align-items: center;
   }
+  /* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent ;
+  width: 1px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(234, 218, 218, 0.571);
+  border-radius: 10px;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey
+}
   
   h1{
     color: white;

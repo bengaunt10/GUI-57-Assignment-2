@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import '../styles/Home.css';
 import search_logo from '../search-icon.png';
@@ -268,9 +269,5 @@ function Info() {
         
       </div>
 
-
-    </div>
-  );
-} 
 
 export default Info;
