@@ -268,6 +268,7 @@ function Info() {
       )}
         
       </div>
-
-
+      </div>
+  )
+}
 export default Info;
