@@ -22,7 +22,7 @@ function Navbar() {
         <ul>
           <a className='close_button' onClick={closeNav}>X</a>
           <li><Link to="/"> Home </Link></li>
-          <li><Link to="/Info"> Weather information </Link></li>
+          <li><Link to={"/info"}>Weather Information</Link></li>
           <li><Link to="/Map"> Map </Link></li>
         </ul>
         </div>

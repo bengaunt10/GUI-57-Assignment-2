@@ -1,79 +1,79 @@
 .sidebar{
-    overflow-x: hidden;
-    position: absolute;
-    width: 0;
-    height: 896px;
-    z-index: 1;
-    transition: ease-out 0.5s;
-    margin-top: -140px;
-    color: white;
-    border-radius: 20px 0px 0px 20px;
-  }
-  
-  .sidebar.open {
-    background-color: #2F4050;
-    width: 200px;
-    transition: width 0.5s;
+  overflow-x: hidden;
+  position: absolute;
+  width: 0;
+  height: 896px;
+  z-index: 1;
+  transition: ease-out 0.5s;
+  margin-top: -140px;
+  color: white;
+  border-radius: 20px 0px 0px 20px;
+}
 
-  }
-  
-  
-  .open_button {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-  }
-  
-  .open_button img {
-    width: 56px;
-    height: 56px;
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 10px;
-    border: none;
-  }
-  
-  .open_button img:hover{
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .close_button{
-    font-size: 36px;
-    color: white;
-    font-family:Arial, Helvetica, sans-serif;
-    text-align: end;
-    margin-right: 10px;
-  }
-  .close_button:hover{
-    cursor:pointer;
-  }
-  
-  .sidebar ul{
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-  }
-  
-  .sidebar ul li{
-    text-decoration: none;
-    list-style: none;
-    color: white;
-    padding: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .sidebar ul li:hover{
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .sidebar ul li a:visited{
-    color: white;
-  }
-  
-  .sidebar ul a{
-    text-decoration: none;
-  }
-  
-  .sidebar ul a:visited{
-    text-decoration: none;
-    color: white;
-  }
+.sidebar.open {
+  background-color: #2F4050;
+  width: 200px;
+  transition: width 0.5s;
+
+}
+
+
+.open_button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.open_button img {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  border: none;
+}
+
+.open_button img:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close_button{
+  font-size: 36px;
+  color: white;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: end;
+  margin-right: 10px;
+}
+.close_button:hover{
+  cursor:pointer;
+}
+
+.sidebar ul{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+
+.sidebar ul li{
+  text-decoration: none;
+  list-style: none;
+  color: white;
+  padding: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.sidebar ul li:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul li a:visited{
+  color: white;
+}
+
+.sidebar ul a{
+  text-decoration: none;
+}
+
+.sidebar ul a:visited{
+  text-decoration: none;
+  color: white;
+}

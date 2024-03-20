@@ -1,0 +1,36 @@
+.waveInfo{
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
+    margin: 15px auto;
+    padding: 5px;
+    text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+    border-radius: 45px;
+    background: rgba(128, 128, 128, 0.40);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: row;
+
+}
+.Head{
+    font-size: 36px;
+    font-weight: bold;
+    grid-area: head
+}
+.Hour{
+    margin: auto;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.city{
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+    margin-left:70px;
+   
+}
