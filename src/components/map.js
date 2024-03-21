@@ -1,19 +1,55 @@
-import React from 'react';
+import React from "react";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
+import { Icon } from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { Link } from "react-router-dom";
+import backButton from "../backButton.png";
+import "../styles/info.css";
 
-function BeachMap(searchTerm) {
+const BeachMap = ({ weather }) => {
+  const position = [weather.coord.lat, weather.coord.lon];
+  console.log(weather);
 
-
-  const mapUrl = `https://maps.google.com/maps?width=100%25&height=600&hl=en&q=beaches+in+${searchTerm}&t=&z=14&ie=UTF8&iwloc=B&output=embed`;
-  
   return (
-    <div>
-      <iframe title="map" width="414" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src={mapUrl}/>
+    <div
+      className={
+        typeof weather.main != "undefined" ? "screen no-background" : ""
+      }
+    >
+      <div className="main">
+        <div className="notch"></div>
+        <Link to="/">
+          <img className="backButton" src={backButton} />{" "}
+        </Link>
+        <MapContainer
+          center={position}
+          zoom={13}
+          scrollWheelZoom={false}
+          style={{ height: "100%", width: "100%" }}
+        >
+          <TileLayer
+            attribution=' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker
+            position={position}
+            icon={
+              new Icon({
+                iconUrl: markerIconPng,
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+              })
+            }
+          >
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
     </div>
-    
-   
   );
-}
+};
 
 export default BeachMap;
-
-//link to map page
