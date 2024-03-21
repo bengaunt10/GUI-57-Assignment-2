@@ -101,6 +101,7 @@ function Info({ weather }) {
             <h2>Ranking </h2>
             <img className="veryGood" src={rank} />
           </div>
+          <h2 className="recommend">Intermediate recommended</h2>
         </div>
       </div>
     </div>
