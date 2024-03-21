@@ -33,8 +33,15 @@
   
     margin-left:60px;
   }
+  #refreshButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    z-index: 400;
+    background-image: url("../backButton.png");
+  }
   .backButton{
-
     width:50px;
     margin-left: 10px;
   }
