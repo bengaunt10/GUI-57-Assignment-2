@@ -1,9 +1,8 @@
 // Importing necessary modules and resources
-import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import Map from "./components/map";
+import Map from "./pages/map";
 import Info from "./pages/info";
 
 // Main App component

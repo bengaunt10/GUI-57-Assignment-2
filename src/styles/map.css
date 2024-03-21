@@ -1,0 +1,17 @@
+  .backButton{
+
+    width:0px;
+    margin-left: 10px;
+  }
+  .backButton:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .holder{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    background: rgba(140, 140, 140, 0.4);
+    backdrop-filter: blur(9px);
+    height:550px;
+  }
