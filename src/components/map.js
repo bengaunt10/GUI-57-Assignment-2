@@ -19,19 +19,20 @@ const BeachMap = ({ weather }) => {
     >
       <div className="main">
         <div className="notch"></div>
-        <Link to="/">
-          <img className="backButton" src={backButton} />{" "}
-        </Link>
+        
         <MapContainer
           center={position}
           zoom={13}
           scrollWheelZoom={false}
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "100%", width: "100%" ,}}
         >
+          <div id="map"></div>
+  
           <TileLayer
             attribution=' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+         
           <Marker
             position={position}
             icon={
@@ -42,6 +43,9 @@ const BeachMap = ({ weather }) => {
               })
             }
           >
+             <Link to="/">
+             <button  type="button" id="refreshButton" style={{backgroundImage: "url(../backButton.png)"}}>Back</button>{" "}
+        </Link>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
