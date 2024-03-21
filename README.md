@@ -14,10 +14,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### Dependancies to install:
-## npm install react react-dom leaflet
-## npm install react-leaflet
-## npm install -D @types/leaflet
+### Dependancies to install before running the app:
+### 1) npm install react react-dom leaflet
+### 2) npm install react-leaflet
+### 3) npm install -D @types/leaflet
+### 4) npm install
+### 5) npm install react-router-dom
 
 ### `npm test`
 
