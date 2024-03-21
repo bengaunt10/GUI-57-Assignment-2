@@ -151,7 +151,9 @@ function Homepage({passWeatherData, weatherImages}) {
           ""
         )}
         {typeof weather.main == "undefined" ? (
-          <h2 className="placerDesc">Search up a location to display its weather along with its surf information aswell</h2>
+          <>
+          <img className='images' src='https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg'/>
+          </>
         ) : (
           ""
         )}

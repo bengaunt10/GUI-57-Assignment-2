@@ -244,3 +244,11 @@ body {
 .spacer{
   width:52px;
 }
+
+.images{
+  border-radius: 50%;
+  width: 70%;
+  position: absolute;
+  top: 350px;
+  right: 65px;
+}
