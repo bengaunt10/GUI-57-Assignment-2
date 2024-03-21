@@ -45,8 +45,8 @@ function App() { //every appplication runs directly from app function
       <Router>
 
         <Routes>
-          <Route exact path='/' element={<Homepage passWeatherData={passWeatherData} weatherImages={weatherImages}/>} />
-          <Route exact path='Info' element={<Info search={search} weather={weather} weatherImages={weatherImages} forecast={forecast}/>} />
+          <Route exact path='/' element={<Homepage passWeatherData={passWeatherData} weatherImages={weatherImages} />} />
+          <Route exact path='Info' element={<Info weather={weather}/>} />
           <Route exact path='Map' element={<Map/>} />
         </Routes>
     </Router>

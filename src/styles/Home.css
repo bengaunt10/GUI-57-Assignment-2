@@ -235,3 +235,12 @@ body {
 .mapSection{
   margin-top: 20px;
 }
+.placerDesc{
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
+}
+.spacer{
+  width:52px;
+}

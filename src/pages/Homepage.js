@@ -116,7 +116,16 @@ function Homepage({passWeatherData, weatherImages}) {
         <div className='notch'></div>
         <p className='date'>{date}</p>
         <header>
-        <Navbar />
+        {typeof weather.main != "undefined" ? (
+          <Navbar />
+        ) : (
+          ""
+        )}
+        {typeof weather.main == "undefined" ? (
+          <div className="spacer"></div>
+        ) : (
+          ""
+        )}
           <h1>SurfX</h1>
         </header>
         <div className='search-box'>
@@ -138,6 +147,11 @@ function Homepage({passWeatherData, weatherImages}) {
             </div>
             <p className='temp'>{Math.round(weather.main.temp)}°C</p>
           </div>   
+        ) : (
+          ""
+        )}
+        {typeof weather.main == "undefined" ? (
+          <h2 className="placerDesc">Search up a location to display its weather along with its surf information aswell</h2>
         ) : (
           ""
         )}
