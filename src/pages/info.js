@@ -8,6 +8,7 @@ function Info({ weather }) {
   const today = new Date();
   const currentHour = today.getHours();
 
+  //fetch weather from api
   useEffect(() => {
     if (weather && weather.coord) {
       const { lat, lon } = weather.coord;
@@ -16,7 +17,7 @@ function Info({ weather }) {
         {
           headers: {
             Authorization:
-              "d0f0e26a-e77d-11ee-b6c8-0242ac130002-d0f0e328-e77d-11ee-b6c8-0242ac130002",
+              "c8d6bc54-e6c8-11ee-afd5-0242ac130002-c8d6bcae-e6c8-11ee-afd5-0242ac130002",
           },
         }
       )
@@ -29,7 +30,7 @@ function Info({ weather }) {
         });
     }
   }, [weather]);
-
+  //this function gets each piece of data we want for the hour passed in 
   const getTimeSlotData = (hour) => {
     return data && data.hours && data.hours[hour]
       ? {
@@ -45,7 +46,7 @@ function Info({ weather }) {
           cloudCover: "Loading...",
         };
   };
-
+  //this gets the hour for the current time and the next 6 hours after aswell
   const timeSlots = {
     [currentHour]: getTimeSlotData(currentHour), // Assuming currentHour is 8am
     [currentHour + 1]: getTimeSlotData(currentHour + 1), // Assuming currentHour is 10am
@@ -80,10 +81,11 @@ function Info({ weather }) {
               <h3>cloud(%):</h3>
             </div>
             <div className="timeSlots">
+              {/* Maps over the time slots and display data for each */}
               {Object.entries(timeSlots).map(([time, data]) => (
                 <div key={time} className="timeSlot">
                   <h2 className="time">
-                    {time >= 12 ? `${time} PM` : `${time} AM`}
+                    {time >= 12 ? `${time >= 24 ? `${time-24} AM` : `${time} PM`}` : `${time} AM`}
                   </h2>
                   <p className="swell">{data.swell}</p>
                   <p className="tide">
