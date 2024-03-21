@@ -1,17 +1,14 @@
+// Importing necessary modules and resources
 import "./App.css";
 import React, { useState } from "react";
-//import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Map from "./components/map";
 import Info from "./pages/info";
 
+// Main App component
 function App() {
-  //every appplication runs directly from app function
-  //components have to be self clsed -> />
-  //switch tells routes we only wanna render one route at each time
-  // / says this is the page as this is homepage
-  //putting navbar above switch keeps on every page
+  // Weather images object containing URLs for weather condition icons
   const weatherImages = {
     "01d": "http://openweathermap.org/img/wn/01d@2x.png",
     "01n": "http://openweathermap.org/img/wn/01n@2x.png",
@@ -32,18 +29,26 @@ function App() {
     "50d": "http://openweathermap.org/img/wn/50d@2x.png",
     "50n": "http://openweathermap.org/img/wn/50n@2x.png",
   };
+
+  // State variables for search query, weather data, and forecast data
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
   const [forecast, setForecast] = useState({});
+
+  // Function to pass weather data to child components
   const passWeatherData = (searchData, weatherData, forecastData) => {
     setSearch(searchData);
     setWeather(weatherData);
     setForecast(forecastData);
   };
+
+  // Rendering JSX
   return (
     <div className="App">
+      {/* Using React Router for routing */}
       <Router>
         <Routes>
+          {/* Route for Homepage */}
           <Route
             exact
             path="/"
@@ -54,12 +59,14 @@ function App() {
               />
             }
           />
-          <Route exact path="Info" element={<Info weather={weather} />} />
-          <Route exact path="Map" element={<Map weather={weather} />} />
+          {/* Route for Info page */}
+          <Route exact path="/Info" element={<Info weather={weather} />} />
+          {/* Route for Map page */}
+          <Route exact path="/Map" element={<Map weather={weather} />} />
         </Routes>
       </Router>
     </div>
   );
 }
 
-export default App;
+export default App; // Exporting App component

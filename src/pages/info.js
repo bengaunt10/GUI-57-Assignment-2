@@ -1,13 +1,20 @@
+// Importing necessary modules and resources
 import React, { useEffect, useState } from "react";
-import "../styles/info.css";
+import "../styles/info.css"; // Importing CSS styles
 import { Link } from "react-router-dom";
-import backButton from "../backButton.png"
-import rank from "../Rank.png"
-function Info({weather}) {
+import backButton from "../backButton.png"; // Importing back button image
+import rank from "../Rank.png"; // Importing rank image
+
+// Info component
+function Info({ weather }) {
+  // State variable to store fetched data
   const [data, setData] = useState(null);
+  
+  // Getting current hour
   const today = new Date();
   const currentHour = today.getHours();
 
+  // Fetching data from API based on weather coordinates
   useEffect(() => {
     if (weather && weather.coord) {
       const { lat, lon } = weather.coord;
@@ -30,6 +37,7 @@ function Info({weather}) {
     }
   }, [weather]);
 
+  // Function to get data for a specific hour
   const getTimeSlotData = (hour) => {
     return data && data.hours && data.hours[hour]
       ? {
@@ -40,37 +48,45 @@ function Info({weather}) {
       : { swell: "Loading...", tide: "Loading...", wave: "Loading..." };
   };
 
+  // Object to store time slots and their corresponding data
   const timeSlots = {
-    [currentHour]: getTimeSlotData(currentHour), // Assuming currentHour is 8am
-    [currentHour + 1]: getTimeSlotData(currentHour + 1), // Assuming currentHour is 10am
-    [currentHour + 2]: getTimeSlotData(currentHour + 2), // Assuming currentHour is 12pm
-    [currentHour + 3]: getTimeSlotData(currentHour + 3), // Assuming currentHour is 12pm
-    [currentHour + 4]: getTimeSlotData(currentHour + 4), // Assuming currentHour is 12pm
-    [currentHour + 5]: getTimeSlotData(currentHour + 5), // Assuming currentHour is 12pm
-    [currentHour + 6]: getTimeSlotData(currentHour + 6), // Assuming currentHour is 12pm
+    [currentHour]: getTimeSlotData(currentHour),
+    [currentHour + 1]: getTimeSlotData(currentHour + 1),
+    [currentHour + 2]: getTimeSlotData(currentHour + 2),
+    [currentHour + 3]: getTimeSlotData(currentHour + 3),
+    [currentHour + 4]: getTimeSlotData(currentHour + 4),
+    [currentHour + 5]: getTimeSlotData(currentHour + 5),
+    [currentHour + 6]: getTimeSlotData(currentHour + 6),
   };
 
+  // Rendering JSX
   return (
     <div className="screen cloudy-background-n">
       <div className="info">
         <div className="main">
           <div className="notch"></div>
+          {/* Header */}
           <header className="header">
-            <Link to="/"><img className="backButton" src={backButton}/> </Link>
+            <Link to="/">
+              <img className="backButton" src={backButton} alt="back button" />
+            </Link>
             <h1>Surf Info</h1>
           </header>
+          {/* City */}
           <p className="city">
             {weather ? `${weather.name}, ${weather.sys.country}` : null}
           </p>
 
+          {/* Holder */}
           <div className="holder">
+            {/* Description */}
             <div className="descHead">
               <h2 className="time">Time :</h2>
               <h3>Swell :</h3>
               <h3>Tide :</h3>
               <h3>Wave(m) :</h3>
-              
             </div>
+            {/* Time slots */}
             <div className="timeSlots">
               {Object.entries(timeSlots).map(([time, data]) => (
                 <div key={time} className="timeSlot">
@@ -82,16 +98,15 @@ function Info({weather}) {
               ))}
             </div>
           </div>
+          {/* Ranking Section */}
           <div className="rankSection">
             <h2>Ranking </h2>
-            <img className="veryGood" src={rank}/> 
+            <img className="veryGood" src={rank} alt="rank" />
           </div>
-
-
         </div>
       </div>
     </div>
   );
 }
 
-export default Info;
+export default Info; // Exporting Info component
