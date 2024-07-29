@@ -23,3 +23,7 @@ You may also see any lint errors in the console.
 
 ## Stormglass APIs
 The API used for the surfing info has a limit of 10 requests per day.
+
+
+https://github.com/user-attachments/assets/ae8ede04-3067-4235-a364-175fbf896d6b
+
