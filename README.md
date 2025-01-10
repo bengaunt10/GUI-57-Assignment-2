@@ -1,3 +1,5 @@
+This is a project I collaborated on for my graphical user interfaces module
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
