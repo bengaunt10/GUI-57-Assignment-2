@@ -1,4 +1,4 @@
-This is a project I collaborated on for my graphical user interfaces module
+This is a project I collaborated on for my graphical user interfaces module under the account name of bgaunt2003
 
 # Getting Started with Create React App
 
